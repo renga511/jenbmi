@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/YOUR_USERNAME/bmi.git'
+            }
+        }
+        stage('Build HTML') {
+            steps {
+                bat 'dir'
+            }
+        }
+        stage('Display Link') {
+            steps {
+                script {
+                    echo "✅ BMI Calculator Ready!"
+                    echo "<a href='file:///C:/ProgramData/Jenkins/.jenkins/workspace/${env.JOB_NAME}/bmi-calculator.html' target='_blank'>Open BMI Calculator</a>"
+                }
+            }
+        }
+    }
+}
