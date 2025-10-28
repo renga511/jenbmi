@@ -1,22 +1,28 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/renga511/jenbmi.git'
+                git url: 'https://github.com/renga511/jenform.git', branch: 'main'
             }
         }
-        stage('Build HTML') {
+
+        stage('Build') {
             steps {
-                bat 'dir'
+                echo 'Building the project...'
             }
         }
-        stage('Display Link') {
+
+        stage('Test') {
             steps {
-                script {
-                    echo "✅ BMI Calculator Ready!"
-                    echo "<a href='file:///C:/ProgramData/Jenkins/.jenkins/workspace/${env.JOB_NAME}/bmi-calculator.html' target='_blank'>Open BMI Calculator</a>"
-                }
+                echo 'Running tests...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
             }
         }
     }
